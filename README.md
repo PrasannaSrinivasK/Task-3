@@ -23,10 +23,33 @@ Perform a basic vulnerability scan on my personal system using a free vulnerabil
 
 ## Key Findings 
 
-- High Severity – SMB Signing Not Required
-- Medium Severity – TLS 1.0 Supported (Deprecated)
-- Low Severity – Outdated software versions detected (non-critical)
+- Multiple High-Risk Vulnerabilities in Node.js  
+  - Detected version: 20.11.0  
+  - Affected by CVEs like CVE-2024-21892, CVE-2024-22019, and more  
+  - Risks: DoS, path traversal, privilege escalation, side-channel attacks  
+  - **Fix**: Update Node.js to 20.18.2 or later
 
+- Untrusted SSL Certificate Detected  
+  - Self-signed Nessus certificate not issued by a known CA  
+  - Fix: Replace with a valid certificate from a trusted authority
+
+- Apache Log4j Presence Detected  
+  - Versions 2.17.1 and 2.24.2 found  
+  - No active vulnerability detected but still a risk due to past critical issues  
+  - Fix: Keep updated and monitor configuration
+
+- Apache HTTP Server Identified  
+  - Version 2.4.63  
+  - No immediate issues flagged, but continued patching is essential
+
+- Dockerfile and Tool Exposure  
+  - Metasploit, ZAP, and Zphisher tools detected  
+  - If containers are misconfigured, this could expose services  
+  - Fix: Harden containers and restrict public access
+
+- Node.js Permission Model Path Traversal Risks  
+  - Misconfigurations allow bypassing of fs-read/write flags  
+  - Fix: Avoid enabling experimental features in production
 Mitigation strategies were noted for each high/medium vulnerability.
 
 ## Output Files
